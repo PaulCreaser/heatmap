@@ -12,7 +12,6 @@ var rgb_table1 = [ "#0500ff", "#0400ff", "#0300ff", "#0200ff", "#0100ff", "#0000
 
 heat_map.init = function(canvas, width, height, cols, rows)
 {
-	console.log(canvas);
 	this.width = width;
 	this.height = height;
         this.cols = cols;
@@ -28,9 +27,6 @@ heat_map.draw_grid = function(cols, rows)
 {
 	col_width  = this.width/cols;
 	row_height = this.height/rows;
-	console.log("Col ", col_width, "Row ", row_height);
-	console.log("Col ", this.width, "Row ", this.height);
-	console.log("Col ", cols, "Row ", rows);
 	for ( i=0; i <= cols; i++)
 	{
 		var x1 = i*col_width;
@@ -61,7 +57,6 @@ heat_map.fill = function(data)
 	col_width  = this.width/this.cols;
 	row_height = this.height/this.rows;
 
-	console.log(data.length , this.rows*this.cols);
 	if (data.length == this.rows*this.cols)
 	{
 		for ( i=0; i <= this.cols; i++)
@@ -71,7 +66,7 @@ heat_map.fill = function(data)
 			{
 				console.log(x, y, col_width, row_height);
 				var y = j*row_height;
-				var color = rgb_table1[data[j*this.cols + i]];
+				var color = rgb_table1[Math.floor(data[j*this.cols + i])];
 				this.context.fillStyle=color;
 				this.context.fillRect(x, y, col_width, row_height);
 			}
